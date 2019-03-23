@@ -1,0 +1,113 @@
+
+
+void Snake::KEYBOARD() /ตัวนี้รับข้อมูลจาก Keyboard เพื่อส่งไปยังหน่วย logic แล้วขยับตัวน้องงู
+{
+/***********************************************************************************************/
+if(_kbhit()) //If player clicks something
+
+{
+    char key;
+    key = _getch(); //Now this click is key
+    switch( key )
+    {
+        case 'd':
+            //cases below,nothing special ,you should understand that easily
+            //,but let me give a simple explanation of first case:
+        {
+            if (L == 0) //So if a player has clicked 'd' ,then.1:We check if snake is not
+            //going left,because how can she turn right,if she's going left?Teleporting?..
+            {
+                L = 0, U = 0, D = 0, //Left = false UP = false Down = false
+                R = 1; //Right = true !
+			}
+            break; //We break it,end of the case.Identic with other cases..
+        }
+
+        case 'w':
+        {
+            if (D == 0)
+            {
+                L = 0, D = 0, R = 0,
+                U = 1;
+            }
+        break;
+        }
+
+        case 'a':
+        {
+            if (R == 0)
+            {
+                D = 0, U = 0, R = 0,
+                L = 1;
+			}
+        break;
+        }
+
+        case 's':
+        {
+            if (U == 0)
+            {
+                L = 0, U = 0, R = 0,
+                D = 1;
+            }
+        break;
+        }
+
+    }
+
+}
+}
+
+/**************************************************************************/
+void Snake::GameLogic() //รับข้อมูลมาจากฟังก์ชั่น keyboard แล้วเพิ่ม x++ เป็นการเพิ่มตำแหน่งของงู
+{
+    past.insert(past.begin(),x); //Inserting past x position to vector
+    KEYBOARD();
+    if(R == 1) //If snake is going right
+    {
+        x++;
+    }
+    else if(L == 1) //If snake is going left
+    {
+        x--;
+    }
+    else if(U == 1) //If snake is going up
+    {
+        x-= 50;
+    }
+    else //If snake is going down(only case left)
+    {
+        x+= 50;
+    }
+    if(map[ x ] == char(219) || x % 50 == 0 || x > 2000 || x < 0 || (x-(x / 50)) % 49 == 0)
+        //If it hits herself or border...
+    {
+        GameOver();
+        return;
+    }
+    if(map[x] == char(229))
+    //If it eats an pineapple also A becomes true,that means the
+    //very end of the snake(tail) will not be deleted ( line 276 ) for 1 frame
+    {
+        A = true;
+        tail++; //It eats a big apple ,so snake becomes heavier
+          //คะแนน++
+        Pineapple(); //Let's generate new apple!
+         //เจนขยะใหม่
+        
+        Dollars++; //Apple had some dollars in it,congrulations!
+        //ในกรณีใส่ผิดก้จบเกม
+	}
+    else if (map[x] == char(5)) //Same,but maybe it has just eaten bonus apple?
+    {
+        A = true;
+        tail++;
+        Pineapple();
+        Bonus+=time;
+    }
+
+    map[x] = char(219);
+    //When it touches apple - head becomes an apple,so we need to change it.
+    //ถ้าโดนขอบถังขยะ  จะส่งค่าไปให้เป็น A=true แล้วเลบค่านี้ทิ้ง 
+    //คะแนน++ เจนขยะใหม่ --ค่าตัวนี้ออก
+/**********/
