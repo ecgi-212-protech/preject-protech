@@ -1,0 +1,27 @@
+#define KeyLeft 75
+#define KeyRight 77
+#define KeyEsc 27
+
+void main()
+{
+int x=80/2-9,y=25/2,ch;
+textmode(C80); // สเกล ของขนาดเกม: 1<=x<=80, 1<=y<=25
+  while(1)
+    { textbackground(10);clrscr();
+      _setcursortype(0);
+      gotoxy(x,y);textcolor(12);cprintf(" GAME JA! ");
+      gotoxy(80-20,25);textcolor(14+BLINK);cprintf("Press ESC to exit...!")
+      ch=getch();
+      switch(ch)
+      {
+        case KeyUp:y--;if(y<1) y=25;break;
+        case KeyDown:y++;if(y>25)y=1;break;
+        case KeyLeft:x--;if(x<1)x=80-9;break;
+        case KeyRight:x++;if(x>80-9)x=1;break;
+        case KeyEsc:exit(1);
+       } //end switch
+    } //end while
+} //end main
+        
+        
+        
