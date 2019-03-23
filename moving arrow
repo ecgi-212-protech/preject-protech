@@ -7,13 +7,15 @@
 #define KeyLeft 75
 #define KeyRight 77
 #define KeyEsc 27
-
+#define ROWS 20
+#define COLS 15
 int quit = 0;
 int Gameover = 0;
 int ScreenLayout[COLS][ROWS];	               //contain the layout with the falling block
 int ScreenBackgroundLayout[COLS][ROWS];      //contain the layout without the falling block
 int PreviousScreenLayout[COLS][ROWS];	       //Will contain the layout of the previous screen
-void main()
+
+int main()
 {
 int x=80/2-9,y=25/2,ch;
 textmode(C80); // สเกล ของขนาดเกม: 1<=x<=80, 1<=y<=25
