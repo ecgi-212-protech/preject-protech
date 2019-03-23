@@ -1,0 +1,43 @@
+#include <vector>
+#include <iostream>
+#include <conio.h> //By Foxefde
+#include <windows.h>
+#include <ctime>
+
+using namespace std;
+
+bool game_running = true;
+int x=1;
+int y=1;
+
+char map[10][20]={  "####################",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",
+                    "#                  #",                                     
+                    "####################"
+};
+/*class trash
+{
+    public:
+    trash()
+    {
+        int
+    }
+}*/
+
+int main()
+{
+    while(game_running = true)
+        system("cls");
+    {
+        for (int display = 0; display <30; display++)
+            cout<< map[display] <<endl;
+    }
+    system("pause>nul");
+}
+
