@@ -1,0 +1,46 @@
+#include <vector>
+#include <iostream>
+#include <conio.h> //By Foxefde
+#include <windows.h>
+#include <ctime>
+
+using namespace std;
+
+class trash
+{
+    private:
+    bool U,D,R; //moving up and down
+    char apple, banana, chicken;
+
+    public:
+    U=0;
+    D=0;
+    R=1;
+}
+
+class trashcan
+{
+    private:
+    int x,y,point,life;
+    char can1, can2, can3;
+
+
+    public:
+
+
+}
+
+class
+
+void clearscreen()
+{
+    HANDLE hOut;
+    COORD Position;
+
+    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    Position.X = 0;
+    Position.Y = 0;
+    SetConsoleCursorPosition(hOut, Position);
+}
+
