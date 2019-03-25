@@ -1,46 +1,106 @@
-#include <vector>
 #include <iostream>
-#include <conio.h> 
 #include <windows.h>
-#include <ctime>
 
 using namespace std;
 
-class trash
-{
-    private:
-    bool U,D,R; //moving up and down
-    char apple, banana, chicken;
+bool game_running = true;
 
-    public:
-    U=0;
-    D=0;
-    R=1;
+int x=1;
+int y=1;
+
+
+    char map[32][200]= {"##############################################",
+                     "#        Put trash in the right can          #",
+                     "#                                           #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#                                            #",
+                     "#    ___/-\___     ___/-\___     ___/-\___      #",
+                     "#   |--------|   |--------|   |--------|     #",
+                     "#   | |   |  |   | | | |  |   |   |    |     #",
+                     "#   |        |   | | | |  |   | | | |  |     #",
+                     "##############################################"
+                    };
+
+int main()
+{
+    cout<<"Put trash in the right can";
+    while(game_running = true)
+    {
+        {
+            system("cls");
+            for (int display = 0; display <30; display++)
+                cout<< map[display] <<endl;
+        }
+        system("pause>nul");
+        if(GetAsyncKeyState(VK_DOWN))
+        {
+            int y2= y+1;
+            if(map[y2][x]== ' ')
+            {
+                map[y][x] = ' ';
+                y++;
+                map[y][x]= '=';
+
+            }
+        }
+        if(GetAsyncKeyState(VK_UP))
+        {
+            int y2= y-1;
+            if(map[y2][x]== ' ')
+            {
+                map[y][x] = ' ';
+                y--;
+                map[y][x]= '=';
+
+            }
+        }
+
+
+        if(GetAsyncKeyState(VK_RIGHT))
+        {
+            int x2= x+1;
+            if(map[y][x2]== ' ')
+            {
+                map[y][x] = ' ';
+                x++;
+                map[y][x]= '=';
+
+            }
+        }
+
+        if(GetAsyncKeyState(VK_LEFT))
+        {
+            int x2= x-1;
+            if(map[y][x2]== ' ')
+            {
+                map[y][x] = ' ';
+                x--;
+                map[y][x]= '=';
+
+            }
+        }
+
+    }
 }
 
-class trashcan
-{
-    private:
-    int x,y,point,life;
-    char can1, can2, can3;
-
-
-    public:
-
-
-}
-
-class
-
-void clearscreen()
-{
-    HANDLE hOut;
-    COORD Position;
-
-    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    Position.X = 0;
-    Position.Y = 0;
-    SetConsoleCursorPosition(hOut, Position);
-}
 
