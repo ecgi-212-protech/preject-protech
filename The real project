@@ -14,11 +14,12 @@ void gotoxy( short x, short y )
 }
 bool game_running = true;
 
-int x=1;
+int x=24;
 int y=1;
 void sp();
 
-    char map[32][50]= {"#################################################",
+    char map[30][50]= {
+                     "#################################################",
                      "#                                               #",
                      "#                                               #",
                      "#                                               #",
@@ -39,7 +40,6 @@ void sp();
                      "#                                               #",
                      "#                                               #",
                      "#                                               #",
-
                      "#                                               #",
                      "#                                               #",
                      "#                                               #",
@@ -52,7 +52,8 @@ void sp();
 
 int main()
 {
-    int Life=1;
+    int Life=3;
+
     cout<<"Put trash in the right bin"<<endl;
     cout<<endl;
     cout<<"----How to play----"<<endl;
@@ -64,8 +65,12 @@ int main()
     cout<<"******* Let's go! (^v^)/ *******"<<endl;
     cout<<endl;
     system("pause");
+
     while(game_running = true)
     {
+        cout<<"Start"<<endl;
+    gotoxy(50,30);
+    gotoxy(50,1); cout<<"Life= "<<Life;
         {
             system("cls");
             for (int display = 0; display <29; display++)
@@ -123,8 +128,8 @@ int main()
         }
 
     }
-    gotoxy(50,32);
-    gotoxy(50,1); cout<<Life;
+    system("cls");
+    return 0;
 }
 
 
