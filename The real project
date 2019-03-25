@@ -1,15 +1,24 @@
 #include <iostream>
 #include <windows.h>
+#include <vector>
+#include <ctime>
+#include <conio.h>
 
 using namespace std;
+void gotoxy( short x, short y )
+{
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE) ;
+    COORD position = { x, y } ;
 
+    SetConsoleCursorPosition( hStdout, position ) ;
+}
 bool game_running = true;
 
 int x=1;
 int y=1;
+void sp();
 
-
-    char map[32][200]= {"#################################################",
+    char map[32][50]= {"#################################################",
                      "#                                               #",
                      "#                                               #",
                      "#                                               #",
@@ -43,6 +52,7 @@ int y=1;
 
 int main()
 {
+    int Life=1;
     cout<<"Put trash in the right bin"<<endl;
     cout<<endl;
     cout<<"----How to play----"<<endl;
@@ -59,8 +69,10 @@ int main()
         {
             system("cls");
             for (int display = 0; display <29; display++)
-                cout<< map[display] <<endl;
-        }
+                {
+                cout<< map[display] <<endl;}
+
+        };
         system("pause>nul");
         if(GetAsyncKeyState(VK_DOWN))
         {
@@ -111,6 +123,7 @@ int main()
         }
 
     }
+    gotoxy(1,50); cout<<Life;
 }
 
 
