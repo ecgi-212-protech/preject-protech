@@ -43,7 +43,17 @@ int y=1;
 
 int main()
 {
-    cout<<"Put trash in the right can";
+    cout<<"Put trash in the right bin"<<endl;
+    cout<<endl;
+    cout<<"----How to play----"<<endl;
+    cout<<"- Using arrow keys to move the trash into the right bin"<<endl;
+    cout<<"- Score will be added every time you put your trash into a right bin"<<endl;
+    cout<<"- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease"<<endl;
+    cout<<"- You have 3 life before game over"<<endl;
+    cout<<endl;
+    cout<<"******* Let's go! (^v^)/ *******"<<endl;
+    cout<<endl;
+    system("pause");
     while(game_running = true)
     {
         {
