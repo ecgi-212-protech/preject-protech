@@ -66,18 +66,13 @@ int main()
     cout<<endl;
     system("pause");
 
-    while(game_running = true)
+       while(game_running = true)
     {
-        cout<<"Start"<<endl;
-    gotoxy(50,30);
-    gotoxy(50,1); cout<<"Life= "<<Life;
         {
             system("cls");
             for (int display = 0; display <29; display++)
-                {
-                cout<< map[display] <<endl;}
-
-        };
+                cout<< map[display] <<endl;
+        }
         system("pause>nul");
         if(GetAsyncKeyState(VK_DOWN))
         {
@@ -87,7 +82,11 @@ int main()
                 map[y][x] = ' ';
                 y++;
                 map[y][x]= '=';
+            }
 
+            if(map[y2][x]== '~')
+            {
+                map[y][x]= ' ';
             }
         }
         if(GetAsyncKeyState(VK_UP))
@@ -98,8 +97,12 @@ int main()
                 map[y][x] = ' ';
                 y--;
                 map[y][x]= '=';
-
             }
+            if(map[y2][x]== '~')
+            {
+                map[y][x]= ' ';
+            }
+
         }
 
 
@@ -111,8 +114,13 @@ int main()
                 map[y][x] = ' ';
                 x++;
                 map[y][x]= '=';
-
             }
+
+            if(map[y][x2]== '~')
+            {
+                map[y][x]= ' ';
+            }
+
         }
 
         if(GetAsyncKeyState(VK_LEFT))
@@ -124,12 +132,14 @@ int main()
                 x--;
                 map[y][x]= '=';
 
+
+            }
+
+            if(map[y][x2]== '~')
+            {
+                map[y][x]= ' ';
             }
         }
 
     }
-    system("cls");
-    return 0;
 }
-
-
