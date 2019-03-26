@@ -11,16 +11,9 @@ class game
     private: string apple;
     public:
         int Life=3,Score=0;
-        class trash()
-        {
-            private:
-            char apple, paper, chichken;
-        };
+
 };
-trash::trash(string a)
-{
-    apple=a;
-}
+
 void gotoxy( short x, short y )
 {
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE) ;
@@ -69,15 +62,15 @@ char map[30][50]=
 
 int main()
 {
-    
+
 
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
-    int x=0;
+    int x=0,a;
     while ( hello[x] != '\0')
     {
         cout << hello[x];
         if ( hello[x]!= ' ' && hello[x]!= '\n')
-            Sleep(75);
+            Sleep(1);
         x++;
     };
     system("pause");
@@ -103,6 +96,29 @@ int main()
             if(map[y2][x]== '~')
             {
                 map[y][x]= ' ';
+            }
+
+            if(map[y2][x]== '-')
+            {
+                try {
+                throw a;
+                }
+                catch(int a){
+                cout<<"wrong bin!"<<endl;
+                cin.clear();
+                cin.ignore(10);
+                }
+            }
+
+            if(map[y2][x]== '.')
+            { try {
+                throw a;
+                }
+                catch(int a){
+                cout<<"wrong bin!"<<endl;
+                cin.clear();
+                cin.ignore(10);
+                }
             }
         }
         if(GetAsyncKeyState(VK_UP))
