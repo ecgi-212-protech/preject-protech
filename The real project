@@ -66,6 +66,7 @@ int main()
 
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
     int x=0,a;
+    char ch;
     while ( hello[x] != '\0')
     {
         cout << hello[x];
@@ -83,6 +84,8 @@ int main()
                 cout<< map[display] <<endl;
         }
         system("pause>nul");
+
+
         if(GetAsyncKeyState(VK_DOWN))
         {
             int y2= y+1;
@@ -104,10 +107,21 @@ int main()
                 throw a;
                 }
                 catch(int a){
-                cout<<"wrong bin!"<<endl;
+                cout<<"wrong bin! This is FOOD BIN \n";
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                cin>>ch;
+                ch=getch();
+                if (ch=='Y'||'y'){
+                    return 0;
+                };
+                if (ch=='N'||'N'){
+
+                    return 1;
+                };
                 cin.clear();
                 cin.ignore(10);
-                }
+
+                 }
             }
 
             if(map[y2][x]== '.')
@@ -115,10 +129,22 @@ int main()
                 throw a;
                 }
                 catch(int a){
-                cout<<"wrong bin!"<<endl;
+                cout<<"wrong bin! This is DANGER BIN\n";
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                cin>>ch;
+                ch=getch();
+                if (ch=='Y'||'y'){
+                    return 0;
+                };
+                if (ch=='N'||'N'){
+
+                    return 1;
+                };
                 cin.clear();
                 cin.ignore(10);
-                }
+
+                 }
+
             }
         }
         if(GetAsyncKeyState(VK_UP))
@@ -174,3 +200,4 @@ int main()
 
     }
 }
+
