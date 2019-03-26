@@ -1,0 +1,11 @@
+#include <iostream>
+#include "withwork.h"
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+trash::trash(string a)
+{
+    
+}
