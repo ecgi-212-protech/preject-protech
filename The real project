@@ -89,16 +89,12 @@ int Recycle(){
                 catch(int a){
                 cout<<"wrong bin! This is FOOD BIN \n";
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
+
                 cin>>ch;
-                ch=getch();
                 if (ch=='Y'||'y'){
-                    cout<<"okay I know";
-                };
-                if (ch=='N'||'N'){
+                    cout<<"okay I know"<<endl;
+                } else cout<<"dont"<<endl;
 
-
-                    cout<<"okay I dont know";
-                };
                 cin.clear();
                 cin.ignore(10);
 
@@ -187,7 +183,7 @@ int main()
 
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
     int x=0,a;
-    char ch;
+
     while ( hello[x] != '\0')
     {
         cout << hello[x];
