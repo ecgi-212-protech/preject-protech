@@ -180,7 +180,7 @@ int Recycle(){
 int main()
 {
 
-
+    int point=0, Life=3;
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
     int x=0,a;
 
@@ -196,9 +196,13 @@ int main()
     while(game_running = true)
     {
         {
+           
             system("cls");
             for (int display = 0; display <29; display++)
                 cout<< map[display] <<endl;
+                gotoxy(55,1); cout<<"Point  "<<point<<endl;
+                gotoxy(55,2); cout<<"Life   "<<life<<endl;
+        
         }
         system("pause>nul");
 
