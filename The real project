@@ -60,31 +60,11 @@ char map[30][50]=
     "#################################################"
 };
 
-int main()
-{
 
+int Recycle(){
 
-    string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
-    int x=0,a;
-    char ch;
-    while ( hello[x] != '\0')
-    {
-        cout << hello[x];
-        if ( hello[x]!= ' ' && hello[x]!= '\n')
-            Sleep(1);
-        x++;
-    };
-    system("pause");
-
-    while(game_running = true)
-    {
-        {
-            system("cls");
-            for (int display = 0; display <29; display++)
-                cout<< map[display] <<endl;
-        }
-        system("pause>nul");
-
+        int a;
+        char ch;
 
         if(GetAsyncKeyState(VK_DOWN))
         {
@@ -112,11 +92,12 @@ int main()
                 cin>>ch;
                 ch=getch();
                 if (ch=='Y'||'y'){
-                    return 0;
+                    cout<<"okay I know";
                 };
                 if (ch=='N'||'N'){
 
-                    return 1;
+
+                    cout<<"okay I dont know";
                 };
                 cin.clear();
                 cin.ignore(10);
@@ -131,18 +112,17 @@ int main()
                 catch(int a){
                 cout<<"wrong bin! This is DANGER BIN\n";
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
+
                 cin>>ch;
-                ch=getch();
-                if (ch=='Y'||'y'){
-                    return 0;
-                };
-                if (ch=='N'||'N'){
 
-                    return 1;
-                };
-                cin.clear();
-                cin.ignore(10);
+                if (ch=='Y'||ch=='y'){
 
+                    cout<<"okay I know";
+                };
+                if (ch=='N'||ch=='n'){
+
+                    cout<<"okay I dont know";
+                };
                  }
 
             }
@@ -198,6 +178,35 @@ int main()
             }
         }
 
+};
+
+
+int main()
+{
+
+
+    string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
+    int x=0,a;
+    char ch;
+    while ( hello[x] != '\0')
+    {
+        cout << hello[x];
+        if ( hello[x]!= ' ' && hello[x]!= '\n')
+            Sleep(1);
+        x++;
+    };
+    system("pause");
+
+    while(game_running = true)
+    {
+        {
+            system("cls");
+            for (int display = 0; display <29; display++)
+                cout<< map[display] <<endl;
+        }
+        system("pause>nul");
+
+        Recycle();
+
     }
 }
-
