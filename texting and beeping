@@ -1,0 +1,23 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main()
+{
+
+
+    string hello = "Hello Bob. Let's get\nprogramming in C++";
+    int x=0;
+    while ( hello[x] != '\0')
+    {
+        cout << hello[x];
+        if ( hello[x]!= ' ' && hello[x]!= '\n')
+		Beep(850, 300);
+        Sleep(100);
+        x++;
+    };
+    cout << "\n\nEnd of message.." << endl << endl;
+    return 0;
+
+}
