@@ -96,7 +96,7 @@ int Recycle(int l){
        // {
         if (tryagain)
         {
-            x=1,y=25;
+            x=25,y=1;
         }
         if(GetAsyncKeyState(VK_DOWN))
         {
