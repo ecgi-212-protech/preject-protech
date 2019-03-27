@@ -114,12 +114,15 @@ int Recycle(int l){
                 throw a;
                 }
                 catch(int a){
+                gotoxy(55,9);
                 cout<<"wrong bin! This is FOOD BIN \n";
+                gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    cin>>ch;
+                    gotoxy(55,12);cin>>ch;
                 if (ch=='Y'||ch=='y'){
                     cout<<"Okay I know, I'll try again"<<endl;
                 }
@@ -139,18 +142,22 @@ int Recycle(int l){
                 throw a;
                 }
                 catch(int a){
+                gotoxy(55,9);
                 cout<<"wrong bin! This is DANGER BIN\n";
+                gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    cin>>ch;
+                    gotoxy(55,12);cin>>ch;
                 if (ch=='Y'||ch=='y')
                 {
                     cout<<"Okay I know, I'll try again"<<endl;
                 }
                 else if (ch=='N'||ch=='n')
                     {
+                    gotoxy(55,15);
                     cout<<"I don't want to do this anymore";
                     checkend=1;
                     if (checkend==1){
@@ -169,12 +176,15 @@ int Recycle(int l){
                 throw a;
                 }
                 catch(int a){
+                gotoxy(55,9);
                 cout<<"The trash is not in the bin!"<<endl;
+                gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    cin>>ch;
+                    gotoxy(55,12);cin>>ch;
                 if (ch=='Y'||ch=='y'){
                     cout<<"Okay I know, I'll try again"<<endl;
                 }
