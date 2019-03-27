@@ -42,14 +42,17 @@ class Circle
 int main()
 {
 
-    int x;
+    int x,y;
     srand (time(NULL));
+    x = rand() %10+1;
+
     // creating object of the class
     Circle obj;
 
     // trying to access private data member
     // directly outside the class
-    obj.ranshow(x);
+    obj.ranshow(x); //เปลี่ยนค่า a
+    obj.ranshow(y); //ปกติ
     obj.compute_area(1.5);
 
 
@@ -58,3 +61,4 @@ int main()
 
 
 }
+
