@@ -1,0 +1,703 @@
+#include <iostream>
+#include <windows.h>
+#include <vector>
+#include <ctime>
+#include <conio.h>
+
+using namespace std;
+
+
+int x=24;
+int y=1;
+bool game_running = true;
+bool tryagain = false;
+
+
+
+void gotoxy( short x, short y )
+{
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE) ;
+    COORD position = { x, y } ;
+
+    SetConsoleCursorPosition( hStdout, position ) ;
+}
+
+int GameOver(int p)
+{
+    Sleep(200);
+    system("cls");
+    cout << "Oops...You earned " << p << " points...";
+    //Better luck next time.
+    Sleep(180);
+}
+int game_over(int l,int p)
+{
+    if(l==0)
+    {
+        cout<<"You've run out of chances!"<<endl;
+        cout<<"You've cleaned "<<p<<" Trashes"<<endl;
+        cout<<"Thanks for playing!"<<endl;
+    }
+    else
+    {
+        cout<<"You've stop to collect the trash"<<endl;
+        cout<<"You've cleaned "<<p<<" Trashes"<<endl;
+        cout<<"Thanks for playing!"<<endl;
+    }
+    game_running=false;
+};
+
+
+char map[30][50]=
+{
+    "#################################################",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#   ,~~~~~~~~~,     ,--------,     ,........,   #",
+    "#   |---------|     |--------|     |--------|   #",
+    "#   | |    |  |     | | | |  |     |   |    |   #",
+    "#   | Recycle |     | Food   |     | Danger |   #",
+    "#^^^###########^^^^^##########^^^^^##########^^^#"
+};
+
+
+int Recycle(int l, int p)
+{
+    int checkend=0;
+    int a;
+    char ch;
+
+        if (tryagain)
+        {
+            x=25,y=1;
+        }
+
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= '=';
+        }
+
+        if(map[y2][x]== '~')
+        {
+            p++;
+            return p;
+        }
+
+        ///////////FOOD BIN///////////////////////////////
+       if(map[y2][x]== '-')
+            {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    game_running=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+                 }
+            }
+        ////////DANGER BIN/////////////////////////
+
+        if(map[y2][x]== '.')
+            { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y')
+                {
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,15);
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+                cin.clear();
+                cin.ignore(10);
+                }
+            }
+
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+            { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+
+    }
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= '=';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '=';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '=';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+
+};
+
+
+int Food(int l, int p)
+{
+    int checkend=0;
+    int a;
+    char ch;
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= '=';
+        }
+
+        if(map[y2][x]== '-')
+        {
+            p++;
+            return p;
+        }
+
+        ///////////Recycle Bin///////////////////////////////
+        if(map[y2][x]== '~')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is RECYCLE BIN\n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y')
+                {
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,15);
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+                cin.clear();
+                cin.ignore(10);
+                }
+            }
+        ////////DANGER BIN/////////////////////////
+
+        if(map[y2][x]== '.')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y')
+                {
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,15);
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+                cin.clear();
+                cin.ignore(10);
+                }
+            }
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+
+    }
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= '=';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '=';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '=';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+};
+
+
+int Danger(int l, int p)
+{
+    int checkend=0;
+    int a;
+    char ch;
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= '=';
+        }
+
+        if(map[y2][x]== '.')
+        {
+            map[y][x]= ' ';
+            p++;
+            return p;
+        }
+
+        ///////////RECYCLE BIN///////////////////////////////
+        if(map[y2][x]== '~')
+        {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is RECYCLE BIN \n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    game_running=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+                 }
+            }
+        ////////Food BIN/////////////////////////
+
+        if(map[y2][x]== '-')
+        {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    game_running=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+                 }
+            }
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y'){
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    tryagain=true;
+                    //system("cls");
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    checkend=1;
+                    if (checkend==1){
+                    GameOver(p);
+                    game_over(l,p);
+                    }
+                    };
+
+                cin.clear();
+                cin.ignore(10);
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+    }
+
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= '=';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '=';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '=';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+};
+
+
+
+int main()
+{
+    int Life=3,point=0;
+    string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
+    int x=0,a,b,c;
+
+    while ( hello[x] != '\0')
+    {
+        cout << hello[x];
+        if ( hello[x]!= ' ' && hello[x]!= '\n')
+            Sleep(1);
+        x++;
+    };
+    system("pause");
+
+    while(game_running = true)
+    {
+        {
+            system("cls");
+            for (int display = 0; display <29; display++)
+                cout<< map[display] <<endl;
+            gotoxy(55,1);
+            cout<<"Point  "<<point<<endl;
+            gotoxy(55,2);
+            cout<<"Life   "<<Life<<endl;
+        }
+        system("pause>nul");
+    do
+    {
+        if (a){Recycle(Life, point);}
+        else if (b) {Food(Life,point);}
+        else {Danger(Life,point);}
+    }while (Life==0 && tryagain == 1);
+
+    } return 0;
+}
