@@ -115,19 +115,25 @@ int Recycle(int Life, int p)
             catch(int a)
             {
 
-              gotoxy(55,4); cout<<"wrong bin! This is FOOD BIN \n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay let's try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay let's try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                     };
                 }
                 while(ch!='y' || ch!='Y' || ch!='n' || ch!='N');
@@ -146,19 +152,25 @@ int Recycle(int Life, int p)
             catch(int a)
             {
 
-                gotoxy(55,4);cout<<"wrong bin! This is DANGER BIN\n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);;cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);;
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -184,19 +196,25 @@ int Recycle(int Life, int p)
             catch(int a)
             {
 
-                gotoxy(55,4);cout<<"The trash is not in the bin!"<<endl;
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"The trash is not in the bin!"<<endl;
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -295,19 +313,25 @@ int Food(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"wrong bin! This is FOOD BIN \n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                     };
                 }
                 while(ch!='y' || ch!='Y' || ch!='n' || ch!='N');
@@ -325,19 +349,25 @@ int Food(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"wrong bin! This is DANGER BIN\n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -360,19 +390,25 @@ int Food(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"The trash is not in the bin!"<<endl;
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"The trash is not in the bin!"<<endl;
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -470,19 +506,25 @@ int Danger(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"wrong bin! This is FOOD BIN \n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                     };
                 }
                 while(ch!='y' || ch!='Y' || ch!='n' || ch!='N');
@@ -500,19 +542,25 @@ int Danger(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"wrong bin! This is DANGER BIN\n";
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -535,19 +583,25 @@ int Danger(int Life, int p)
             }
             catch(int a)
             {
-                gotoxy(55,4);cout<<"The trash is not in the bin!"<<endl;
-                gotoxy(55,6);cout<<"You have "<<Life<<" life left"<<endl;
-                gotoxy(55,8);cout<<"Do you want to continue...? (Y/N)"<<endl;
+                gotoxy(55,4);
+                cout<<"The trash is not in the bin!"<<endl;
+                gotoxy(55,6);
+                cout<<"You have "<<Life<<" life left"<<endl;
+                gotoxy(55,8);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
                 do
                 {
-                    gotoxy(55,9);cin>>ch;
+                    gotoxy(55,9);
+                    cin>>ch;
                     if (ch=='Y'||ch=='y')
                     {
-                        gotoxy(55,11);cout<<"Okay I know, I'll try again"<<endl;
+                        gotoxy(55,11);
+                        cout<<"Okay I know, I'll try again"<<endl;
                     }
                     else if (ch=='N'||ch=='n')
                     {
-                        gotoxy(55,11);cout<<"I don't want to do this anymore";
+                        gotoxy(55,11);
+                        cout<<"I don't want to do this anymore";
                         checkend=1;
                         if (checkend==1)
                         {
@@ -621,7 +675,7 @@ int main()
 {
 
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
-    int x=0,a,b,c;
+    int x=0,a,o;
 
     while ( hello[x] != '\0')
     {
@@ -644,14 +698,13 @@ int main()
             cout<<"Life   "<<Life<<endl;
         }
         system("pause>nul");
-    
-    for (Life=3; Life>=0; Life--)
+        for (Life=3; Life>=0; Life--)
         {
             if (0<o&&o<40)
             {
 
                 {
-                    const string trashgood[4] ={"paper","box","bottle","can"};
+                    const string trashgood[4] ={"paper", "box", "bottle", "can"};
                     string word = trashgood[rand() %4];
                     gotoxy(55,3);
                     cout<<word<<endl;
@@ -661,7 +714,7 @@ int main()
             }
             else if (40<o && o<70)
             {
-                const string trashwaste[4] ={"chicken","apple","fish","hamburger"};
+                const string trashwaste[4] ={"chicken", "apple", "fish", "hamburger"};
                 string word = trashwaste[rand() %4];
                     gotoxy(55,3);
                     cout<<word<<endl;
@@ -669,7 +722,7 @@ int main()
             }
             else
             {
-                const string trashdanger[4] ={"battery","light bulb","phone","Pra-Yuth"};
+                const string trashdanger[4] ={"battery", "light bulb", "phone", "Pra-Yuth"};
                     string word = trashdanger[rand() %4];
                     gotoxy(55,3);
                     cout<<word<<endl;
@@ -678,7 +731,7 @@ int main()
 
 
         }
-    game_over(Life,point);
-    return 0;
-}
+        game_over(Life,point);
+        return 0;
+    }
 }
