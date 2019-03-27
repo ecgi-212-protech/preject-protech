@@ -12,6 +12,22 @@ int y=1;
 bool game_running = true;
 bool tryagain = false;
 
+class Game
+{
+    // private data member
+    private:
+        int a;
+
+    // public member function
+    public:
+         int ranshow(int a)
+         {
+        cout<< "Number is: "<<a<<endl;
+        }
+
+
+};
+
 
 
 void gotoxy( short x, short y )
@@ -100,7 +116,7 @@ int Recycle(int l, int p)
         {
             map[y][x] = ' ';
             y++;
-            map[y][x]= '=';
+            map[y][x]= 'r';
         }
 
         if(map[y2][x]== '~')
@@ -293,7 +309,7 @@ int Food(int l, int p)
         {
             map[y][x] = ' ';
             y++;
-            map[y][x]= '=';
+            map[y][x]= 'f';
         }
 
         if(map[y2][x]== '-')
@@ -483,7 +499,7 @@ int Danger(int l, int p)
         {
             map[y][x] = ' ';
             y++;
-            map[y][x]= '=';
+            map[y][x]= 'd';
         }
 
         if(map[y2][x]== '.')
@@ -669,7 +685,16 @@ int main()
 {
     int Life=3,point=0;
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
-    int x=0,a,b,c;
+    int x=0,a,b,c,v;
+
+    int o;
+    srand (time(NULL));
+    o = rand() %10+1;
+    // creating object of the class
+    Game obj;
+    // trying to access private data member
+    // directly outside the class
+    obj.ranshow(o); //เปลี่ยนค่า a
 
     while ( hello[x] != '\0')
     {
@@ -690,14 +715,18 @@ int main()
             cout<<"Point  "<<point<<endl;
             gotoxy(55,2);
             cout<<"Life   "<<Life<<endl;
+            obj.ranshow(o);
         }
         system("pause>nul");
-    do
-    {
-        if (a){Recycle(Life, point);}
-        else if (b) {Food(Life,point);}
-        else {Danger(Life,point);}
-    }while (Life==0 && tryagain == 1);
+
+    if(o>=1&&o<4){
+     Recycle(Life, point);};
+        if(o>=4&&o<=7){
+    Food(Life, point);
+        };
+        if(o>7&&o<=10){
+    Danger(Life, point);
+        };
 
     } return 0;
 }
