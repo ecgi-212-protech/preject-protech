@@ -1,0 +1,60 @@
+#include<iostream>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+
+using namespace std;
+
+class Circle
+{
+    // private data member
+    private:
+        double radius;
+        int a;
+
+    // public member function
+    public:
+
+        int ranshow(int a){
+
+        int number;
+        number = rand() %10+1;
+
+        cout<< "Number is: "<<number<<endl;
+
+        }
+
+
+        double  compute_area(double r)
+        {   // member function can access private
+            // data member radius
+            radius = r;
+
+            double area = 3.14*radius*radius;
+
+            cout << "Radius is:" << radius << endl;
+            cout << "Area is: " << area;
+        }
+
+};
+
+// main function
+int main()
+{
+
+    int x;
+    srand (time(NULL));
+    // creating object of the class
+    Circle obj;
+
+    // trying to access private data member
+    // directly outside the class
+    obj.ranshow(x);
+    obj.compute_area(1.5);
+
+
+
+    return 0;
+
+
+}
