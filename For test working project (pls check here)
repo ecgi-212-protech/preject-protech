@@ -644,14 +644,40 @@ int main()
             cout<<"Life   "<<Life<<endl;
         }
         system("pause>nul");
-    for (Life=3;Life>=0;Life--)
-    {
-        if (a){Recycle(Life, point);}
-        else if (b) {Food(Life,point);}
-        else {Danger(Life,point);}
+    
+    for (Life=3; Life>=0; Life--)
+        {
+            if (0<o&&o<40)
+            {
+
+                {
+                    const string trashgood[4] ={"paper","box","bottle","can"};
+                    string word = trashgood[rand() %4];
+                    gotoxy(55,3);
+                    cout<<word<<endl;
+                    Recycle(Life, point);
+                }
+
+            }
+            else if (40<o && o<70)
+            {
+                const string trashwaste[4] ={"chicken","apple","fish","hamburger"};
+                string word = trashwaste[rand() %4];
+                    gotoxy(55,3);
+                    cout<<word<<endl;
+                Food(Life,point);
+            }
+            else
+            {
+                const string trashdanger[4] ={"battery","light bulb","phone","Pra-Yuth"};
+                    string word = trashdanger[rand() %4];
+                    gotoxy(55,3);
+                    cout<<word<<endl;
+                Danger(Life,point);
+            }
 
 
-    }
+        }
     game_over(Life,point);
     return 0;
 }
