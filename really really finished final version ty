@@ -1,0 +1,631 @@
+
+#include <iostream>
+#include <windows.h>
+#include <vector>
+#include <ctime>
+#include <conio.h>
+
+
+class Node
+{
+public:
+    Node* next;
+    int data;
+};
+
+using namespace std;
+
+
+class LinkedList
+{
+public:
+    int length;
+    Node* head;
+
+    LinkedList();
+    void add(int data); //สร้าง add
+    void print(); //โชว์
+};
+
+LinkedList::LinkedList(){
+    this->length = 0;
+    this->head = NULL;
+}
+
+
+void LinkedList::add(int data){
+    Node* node = new Node();
+    node->data = data;
+    node->next = this->head;
+    this->head = node;
+    this->length++;
+}
+
+void LinkedList::print(){
+    Node* head = this->head;
+    int i = 1;
+    while(head){
+        std::cout <<"Score in Linklist" << ": " << head->data << std::endl;
+
+        head = head->next;
+        i++;
+    }
+}
+
+
+int x=24;
+int y=1;
+bool game_running = true;
+bool tryagain = false;
+class Game
+{
+    // private data member
+    private:
+        int a;
+
+    // public member function
+    public:
+         int ranshow(int a)
+         {
+
+        cout<< "Number is: "<<a<<endl;
+        }
+
+
+};
+
+
+
+void gotoxy( short x, short y )
+{
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE) ;
+    COORD position = { x, y } ;
+
+    SetConsoleCursorPosition( hStdout, position ) ;
+}
+
+int game_over(int l,int p)
+{
+    Sleep(2000);
+    cout << "Oops...You earned " << p << " points..."<<endl;
+    //Better luck next time.
+
+    if(l==0)
+    {
+        cout<<"You've run out of chances!"<<endl;
+        cout<<"You've cleaned "<<p<<" Trashes"<<endl;
+        cout<<"Thanks for playing!"<<endl;
+    }
+    else
+    {
+        cout<<"You've stop to collect the trash"<<endl;
+        cout<<"You've cleaned "<<p<<" Trashes"<<endl;
+        cout<<"Thanks for playing!"<<endl;
+    }
+    Sleep(180);
+    system("pause");
+};
+
+
+char map[30][50]=
+{
+    "#################################################",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#                                               #",
+    "#   ,~~~~~~~~~,     ,--------,     ,........,   #",
+    "#   |---------|     |--------|     |--------|   #",
+    "#   | |    |  |     | | | |  |     |   |    |   #",
+    "#   | Recycle |     | Food   |     | Danger |   #",
+    "#^^^###########^^^^^##########^^^^^##########^^^#"
+};
+
+int ask(int l, int p, int &oi){
+                char ch;
+                int checkend=0,o;
+                gotoxy(55,13);
+                cout<<"Do you want to continue...? (Y/N)"<<endl;
+
+                do
+                {
+                    gotoxy(55,14);cin>>ch;
+                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
+                if (ch=='Y'||ch=='y')
+                {
+                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    y=1;
+                    x=24;
+                    srand(time(NULL));
+                    oi=rand()%10;
+                }
+                else if (ch=='N'||ch=='n')
+                    {
+
+                    gotoxy(55,15);
+                    gotoxy(55,16);cout<<"I don't want to do this anymore";
+                    system("cls");
+
+                    game_over(l,p);
+
+                    };
+
+                return o;
+                    cin.clear();
+}
+
+int Recycle(int &l, int &p, int &oi)
+{
+    int checkend=0;
+    int a,*r;
+    char ch;
+
+    LinkedList* list = new LinkedList();
+
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= 'r';
+        }
+
+        if(map[y2][x]== '~')
+        {
+
+            y=1;
+            p++;
+            return p;
+            p=*r;
+            list->add(p);
+        }
+
+        ///////////FOOD BIN///////////////////////////////
+       if(map[y2][x]== '-')
+            {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                l--;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                return l;
+                 }
+            }
+        ////////DANGER BIN/////////////////////////
+
+        if(map[y2][x]== '.')
+            { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                l--;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+
+                ask(l,p,oi);
+                return l;
+                }
+            }
+
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+            { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l--;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                return l;
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+
+    }
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= 'r';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '>';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '<';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+};
+
+
+int Food(int &l, int &p, int &oi)
+{
+    int checkend=0;
+    int a,*f;
+    char ch;
+
+    LinkedList* list = new LinkedList();
+
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= 'f';
+        }
+
+        if(map[y2][x]== '-')
+        {
+            y=1;
+            p++;
+            return p;
+            p=*f;
+            list->add(p);
+
+        }
+
+        ///////////Recycle Bin///////////////////////////////
+        if(map[y2][x]== '~')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is RECYCLE BIN\n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                }
+            }
+        ////////DANGER BIN/////////////////////////
+
+        if(map[y2][x]== '.')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is DANGER BIN\n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                }
+            }
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+
+    }
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= 'f';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '>';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '<';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+};
+
+
+int Danger(int &l, int &p,int &oi)
+{
+    int checkend=0;
+    int a,*d;
+    char ch;
+
+    LinkedList* list = new LinkedList();
+
+    if(GetAsyncKeyState(VK_DOWN))
+    {
+        int y2= y+1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y++;
+            map[y][x]= 'd';
+        }
+
+        if(map[y2][x]== '.')
+        {
+            map[y][x]= ' ';
+            y=1;
+            p++;
+            return p;
+            p=*d;
+            list->add(p);
+        }
+
+        ///////////RECYCLE BIN///////////////////////////////
+        if(map[y2][x]== '~')
+        {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is RECYCLE BIN \n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                 }
+            }
+        ////////Food BIN/////////////////////////
+
+        if(map[y2][x]== '-')
+        {
+                try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"wrong bin! This is FOOD BIN \n";
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+                 }
+            }
+
+        ////////////////////////// Ground/////////////
+
+        if(map[y2][x]== '^')
+        { try {
+                throw a;
+                }
+                catch(int a){
+                gotoxy(55,9);
+                cout<<"The trash is not in the bin!"<<endl;
+                l=l-1;
+                gotoxy(55,11);
+                cout<<"You have "<<l<<" life left"<<endl;
+                ask(l,p,oi);
+            }
+        }
+        ////////////////////////////////////////////////////////////////
+    }
+
+    if(GetAsyncKeyState(VK_UP))
+    {
+        int y2= y-1;
+        if(map[y2][x]== ' ')
+        {
+            map[y][x] = ' ';
+            y--;
+            map[y][x]= 'd';
+        }
+        if(map[y2][x]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_RIGHT))
+    {
+        int x2= x+1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x++;
+            map[y][x]= '>';
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+
+    }
+
+    if(GetAsyncKeyState(VK_LEFT))
+    {
+        int x2= x-1;
+        if(map[y][x2]== ' ')
+        {
+            map[y][x] = ' ';
+            x--;
+            map[y][x]= '<';
+
+
+        }
+
+        if(map[y][x2]== '~')
+        {
+            map[y][x]= ' ';
+        }
+    }
+};
+
+
+
+int main()
+{
+    int Life=3,point=0;
+    string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
+    int x=0,a,b,c,v;
+
+    int o;
+    srand (time(NULL));
+    o = rand()%10;
+    Game obj;
+
+    obj.ranshow(o);
+
+    while ( hello[x] != '\0')
+    {
+        cout << hello[x];
+        if ( hello[x]!= ' ' && hello[x]!= '\n')
+            Sleep(1);
+        x++;
+    };
+    system("pause");
+
+    while(game_running = true)
+    {
+
+        {
+            system("cls");
+
+            for (int display = 0; display <29; display++)
+                cout<< map[display] <<endl;
+
+
+
+            if(o>=0&&o<4){Recycle(Life, point,o);};
+            if(o>=4&&o<=7){Food(Life, point,o);};
+            if(o>7&&o<=10){Danger(Life, point,o);};
+            gotoxy(55,1);
+            cout<<"Point  "<<point<<endl;
+            gotoxy(55,2);
+            cout<<"Life   "<<Life<<endl;
+            gotoxy(55,3);
+            obj.ranshow(o);
+
+            LinkedList* list = new LinkedList();
+            list->add(point);
+            gotoxy(55,4);
+            list->print();
+        }
+        system("pause>nul");
+    if (Life==0)
+    {
+        system("CLS");
+        game_running = false;
+        game_over(Life,point);
+    }
+
+
+
+    } return 0;
+}
