@@ -4,10 +4,6 @@
 #include <ctime>
 #include <conio.h>
 
-#include<stdio.h>
-#include<stdlib.h>
-
-
 
 class Node
 {
@@ -48,11 +44,13 @@ void LinkedList::print(){
     Node* head = this->head;
     int i = 1;
     while(head){
-        std::cout <<"Life in Linklist" << ": " << head->data << std::endl;
+        std::cout <<"Score in Linklist" << ": " << head->data << std::endl;
+
         head = head->next;
         i++;
     }
 }
+
 
 int x=24;
 int y=1;
@@ -69,6 +67,7 @@ class Game
     public:
          int ranshow(int a)
          {
+
         cout<< "Number is: "<<a<<endl;
         }
 
@@ -144,7 +143,7 @@ char map[30][50]=
 
 int ask(int l, int p){
                 char ch;
-                int checkend=0;
+                int checkend=0,o;
                 gotoxy(55,13);
                 cout<<"Do you want to continue...? (Y/N)"<<endl;
 
@@ -155,6 +154,7 @@ int ask(int l, int p){
                 if (ch=='Y'||ch=='y')
                 {
                     gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
+                    y=1;
                     return 1;
                     //system("cls");
                 }
@@ -168,14 +168,18 @@ int ask(int l, int p){
                     game_over(l,p);
 
                     };
+                o=rand()%10;
+                return o;
+                    cin.clear();
 }
 
-int Recycle(int l, int p)
+int Recycle(int l, int p=0)
 {
     int checkend=0;
-    int a;
+    int a,*r;
     char ch;
 
+    LinkedList* list = new LinkedList();
 
     if(GetAsyncKeyState(VK_DOWN))
     {
@@ -189,8 +193,12 @@ int Recycle(int l, int p)
 
         if(map[y2][x]== '~')
         {
+
+            y=1;
             p++;
-            return p;
+            p=*r;
+            list->add(p);
+
         }
 
         ///////////FOOD BIN///////////////////////////////
@@ -202,7 +210,7 @@ int Recycle(int l, int p)
                 catch(int a){
                 gotoxy(55,9);
                 cout<<"wrong bin! This is FOOD BIN \n";
-                l=l-1;
+                l--;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
 
@@ -218,7 +226,9 @@ int Recycle(int l, int p)
                 catch(int a){
                 gotoxy(55,9);
                 cout<<"wrong bin! This is DANGER BIN\n";
-                l=l-1;
+                l--;
+
+                return l;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
 
@@ -236,32 +246,12 @@ int Recycle(int l, int p)
                 catch(int a){
                 gotoxy(55,9);
                 cout<<"The trash is not in the bin!"<<endl;
-                l=l-1;
+                l--;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y'){
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
+                ask(l,p);
+                return l;
 
-                    game_over(l,p);
-                    }
-                    };
-
-                cin.clear();
-                cin.ignore(10);
             }
         }
         ////////////////////////////////////////////////////////////////
@@ -324,8 +314,11 @@ int Recycle(int l, int p)
 int Food(int l, int p)
 {
     int checkend=0;
-    int a;
+    int a,*f;
     char ch;
+
+    LinkedList* list = new LinkedList();
+
     if(GetAsyncKeyState(VK_DOWN))
     {
         int y2= y+1;
@@ -338,8 +331,11 @@ int Food(int l, int p)
 
         if(map[y2][x]== '-')
         {
+            y=1;
             p++;
-            return p;
+            p=*f;
+            list->add(p);
+
         }
 
         ///////////Recycle Bin///////////////////////////////
@@ -353,30 +349,7 @@ int Food(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y')
-                {
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,15);
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
                 }
             }
         ////////DANGER BIN/////////////////////////
@@ -391,30 +364,7 @@ int Food(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y')
-                {
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,15);
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
                 }
             }
 
@@ -430,29 +380,7 @@ int Food(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y'){
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
             }
         }
         ////////////////////////////////////////////////////////////////
@@ -514,8 +442,11 @@ int Food(int l, int p)
 int Danger(int l, int p)
 {
     int checkend=0;
-    int a;
+    int a,*d;
     char ch;
+
+    LinkedList* list = new LinkedList();
+
     if(GetAsyncKeyState(VK_DOWN))
     {
         int y2= y+1;
@@ -530,7 +461,8 @@ int Danger(int l, int p)
         {
             map[y][x]= ' ';
             p++;
-            return p;
+            p=*d;
+            list->add(p);
         }
 
         ///////////RECYCLE BIN///////////////////////////////
@@ -545,30 +477,7 @@ int Danger(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y'){
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    game_running=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
                  }
             }
         ////////Food BIN/////////////////////////
@@ -584,30 +493,7 @@ int Danger(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y'){
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    game_running=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
                  }
             }
 
@@ -623,29 +509,7 @@ int Danger(int l, int p)
                 l=l-1;
                 gotoxy(55,11);
                 cout<<"You have "<<l<<" life left"<<endl;
-                gotoxy(55,13);
-                cout<<"Do you want to continue...? (Y/N)"<<endl;
-                do
-                {
-                    gotoxy(55,14);cin>>ch;
-                }while(ch!='y' && ch!='Y' && ch!='n' && ch!='N');
-                if (ch=='Y'||ch=='y'){
-                    gotoxy(55,16);cout<<"Okay I know, I'll try again"<<endl;
-                    tryagain=true;
-                    //system("cls");
-                }
-                else if (ch=='N'||ch=='n')
-                    {
-                    gotoxy(55,16);cout<<"I don't want to do this anymore";
-                    checkend=1;
-                    if (checkend==1){
-
-                    game_over(l,p);
-                    }
-                    };
-
-                cin.clear();
-                cin.ignore(10);
+                ask(l,p);
             }
         }
         ////////////////////////////////////////////////////////////////
@@ -707,19 +571,16 @@ int Danger(int l, int p)
 
 int main()
 {
-    LinkedList* list = new LinkedList();
-    int Life=3,point=0;
+    int Life=3,point;
     string hello = "Put trash in the right bin\n----How to play----\n- Using arrow keys to move the trash\n- Score will be added every time you put your trash into a right bin\n- If you missed or put your trash in a wrong bin, Your goodness(life) will decrease\n- You have 3 life before game over\n******* Let's go! (^v^)/ *******\n";
     int x=0,a,b,c,v;
 
     int o;
     srand (time(NULL));
-    o = 2;
+    o = rand()%10;
     Game obj;
+
     obj.ranshow(o);
-
-    list->add(Life);
-
 
     while ( hello[x] != '\0')
     {
@@ -732,25 +593,38 @@ int main()
 
     while(game_running = true)
     {
+
         {
             system("cls");
+
             for (int display = 0; display <29; display++)
                 cout<< map[display] <<endl;
+
+
+
+    if(o>=0&&o<4){Recycle(Life, point);};
+    if(o>=4&&o<=7){Food(Life, point);};
+    if(o>7&&o<=10){Danger(Life, point);};
             gotoxy(55,1);
             cout<<"Point  "<<point<<endl;
             gotoxy(55,2);
             cout<<"Life   "<<Life<<endl;
             gotoxy(55,3);
             obj.ranshow(o);
+
+    LinkedList* list = new LinkedList();
+    list->add(point);
             gotoxy(55,4);
             list->print();
         }
         system("pause>nul");
 
-    if(o>=1&&o<4){Recycle(Life, point);};
-    if(o>=4&&o<=7){Food(Life, point);};
-    if(o>7&&o<=10){Danger(Life, point);};
     gotoxy(55, 10);
-    
+    cout<<"hi";
+
+
+
+
+
     } return 0;
 }
